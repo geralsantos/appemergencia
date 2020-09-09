@@ -14,22 +14,14 @@ class NavigationHomeScreen extends StatefulWidget {
 class _NavigationHomeScreenState extends State<NavigationHomeScreen> {
   Widget screenView;
   int drawerIndex;
-  String geoLocation = "", geoLocation2 = "";
 
   @override
   void initState() {
     drawerIndex = 0;
     screenView =  Inicio();
-    _getLocation();
     super.initState();
   }
 
-  Future _getLocation() async {
-    geoLocation = await getLocation();
-    setState(() {
-      geoLocation2 = geoLocation;
-    });
-  }
   @override
   Widget build(BuildContext context) {
     return Container(

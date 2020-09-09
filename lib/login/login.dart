@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:appemergencia/app/Services/GpsLocation.dart';
 import 'package:appemergencia/login/registrar/registrar.dart';
 import 'package:get/get.dart';
 
@@ -30,16 +31,26 @@ class _LoginThreePageState extends State<LoginThreePage> {
   bool _showLoader = false, _showDialogResponse = false;
   bool passwordObscure = true;
   String usuario = "", contrasena = "";
+  String geoLocation = "", geoLocation2 = "";
+
   @override
   void initState() {
     super.initState();
     initData();
+    _getLocation();
+
   }
 
   Future initData() async {
     await sharedPrefs.open();
   }
 
+  Future _getLocation() async {
+    geoLocation = await getLocation();
+    setState(() {
+      geoLocation2 = geoLocation;
+    });
+  }
   void _loginService(BuildContext _context) async {
     //String title,String description,String btnOk
     successLogin(_context);
